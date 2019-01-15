@@ -30,6 +30,5 @@ public class B {
         boolean a = check(rot+1,deg+n[rot] % 360);
         boolean b = check(rot+1,deg-n[rot] % 360);
         return a||b;
-
     }
 }

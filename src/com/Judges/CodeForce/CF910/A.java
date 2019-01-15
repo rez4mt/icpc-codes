@@ -1,4 +1,4 @@
-//package com.Judges.CodeForce.CF910;
+package com.Judges.CodeForce.CF910;
 
 import java.util.Scanner;
 
