@@ -18,6 +18,7 @@ public class U10815 {
             bf.append(sc.nextLine());
             bf.append("\n");
         }
+
         PriorityQueue<String> queue=new PriorityQueue<>();
         Matcher matcher = Pattern.compile("[A-Za-z]+", Pattern.MULTILINE).matcher(bf.toString());
         while (matcher.find())
@@ -30,5 +31,6 @@ public class U10815 {
             }
         }
         while (!queue.isEmpty()) System.out.println(queue.poll());
+
     }
 }
