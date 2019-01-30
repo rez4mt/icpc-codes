@@ -1,5 +1,6 @@
 package com.Judges.uri;
 
+import java.math.BigInteger;
 import java.util.Scanner;
 
 public class P1026 {
@@ -11,7 +12,6 @@ public class P1026 {
             a = sc.nextLong();
             b = sc.nextLong();
             System.out.println(a ^ b);
-
         }
 
     }

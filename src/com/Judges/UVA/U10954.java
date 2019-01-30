@@ -3,7 +3,7 @@ package com.Judges.UVA;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-public class P10954 {
+public class U10954 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (true)

@@ -11,7 +11,6 @@ public class B {
         n = sc.nextInt();
         m = sc.nextInt();
         Teams[][] teams = new Teams[m][4];
-
         for(int i = 0 ; i < n ; i++)
         {
             int r,p;
@@ -28,37 +27,19 @@ public class B {
                         return 1;
                     if(o2 == null)
                         return -1;
-                    return o1.compareTo(o2);
+                    return o2.compareTo(o1);
                 }
             });
         }
-        /*for(int i = 0 ; i < m ; i++)
-            Arrays.sort(teams[i], new Comparator<Teams>() {
-                @Override
-                public int compare(Teams o1, Teams o2) {
-                    if(o1 == null && o2 == null)
-                        return 0;
-                    if(o1== null)
-                        return 1;
-                    if(o2 == null)
-                        return -1;
-                    return o1.compareTo(o2);
-
-                }
-            });*/
         for(int i = 0 ; i < m ; i++)
         {
 
             if(teams[i][0].points!=teams[i][1].points)
             {
-                if(teams[i].length > 2)
+                if(teams[i][2] == null || teams[i][1].points != teams[i][2].points)
                 {
-
-                    if(teams[i][2] == null || teams[i][1].points != teams[i][2].points)
-                    {
-                        System.out.printf("%s %s\n",teams[i][0].name,teams[i][1].name);
-                        continue;
-                    }
+                    System.out.printf("%s %s\n",teams[i][0].name,teams[i][1].name);
+                    continue;
                 }
             }
             System.out.println("?");
@@ -75,9 +56,11 @@ public class B {
         }
         @Override
         public int compareTo(Teams o) {
-            return o.points-points ;
-        }
 
+             if(o.points == points )
+                return 0;
+             return o.points > points ? 1 : -1;
+        }
         @Override
         public String toString() {
             return String.format("{%s %s}",name,points);
