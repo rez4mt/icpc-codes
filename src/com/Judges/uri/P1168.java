@@ -10,17 +10,11 @@ public class P1168 {
         int[] seg = {6,2,5,5,4,5,6,3,7,6};
         while (T-->0)
         {
-            BigInteger s = sc.nextBigInteger();
+            String s = sc.next();
             long sum = 0;
-            if(s.compareTo(BigInteger.ZERO) == 0)
+            for(int i = 0 ; i < s.length() ;i ++)
             {
-                System.out.println(seg[0]);
-                continue;
-            }
-            while (s.compareTo(BigInteger.ZERO)>0)
-            {
-                sum += seg[s.mod(BigInteger.TEN).intValue()];
-                s = s.divide(BigInteger.TEN);
+                sum +=seg[Integer.valueOf(Character.toString(s.charAt(i)))];
             }
             System.out.printf("%d leds\n",sum);
         }

@@ -1,104 +1,109 @@
 package com.Judges.UVA;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class U10258 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int T = sc.nextInt();
-        sc.nextLine();
-        sc.nextLine();
-        Map<String,User> map;
-        while (T-->0)
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int TC = Integer.valueOf(bf.readLine());
+        bf.readLine();
+        List<Users> list;
+        HashMap<String,Integer> indexes ;
+        boolean first = true;
+        while (TC-->0)
         {
-            map = new HashMap<>();
-            String d ;
-            while (!(d = sc.nextLine()).equals(""))
+            String line ;
+            indexes = new HashMap<>();
+            list = new ArrayList<>();
+            line = bf.readLine();
+            if(!first)
             {
-
-                String[] parts = d.split("\\s");
-                if(parts[3].equals("C"))
-                {
-                    if(!map.containsKey(parts[0]))
-                        map.put(parts[0],new User(parts[0]));
-
-                    User u = map.get(parts[0]);
-
-                    if(u.add(parts[1]))
-                        u.incTime(parts[2]);
-                }else if(parts[3].equals("I"))
-                {
-                    if(!map.containsKey(parts[0]))
-                        map.put(parts[0],new User(parts[0]));
-
-                    User u = map.get(parts[0]);
-
-                    u.addIncorrect(parts[1]);
-                }else
-                {
-                    if(!map.containsKey(parts[0]))
-                        map.put(parts[0],new User(parts[0]));
-                }
+                System.out.println();
             }
-            ArrayList<User> list = new ArrayList<>(map.values());
+
+
+
+
+            first = false;
+            while ( line !=null && !line.isEmpty())
+            {
+                String[] parts = line.split("\\s");
+                // 0 1       2    3
+                //id problem time OP
+                if(!indexes.containsKey(parts[0]))
+                {
+                    list.add(list.size(),new Users(parts[0]));
+                    indexes.put(parts[0],list.size()-1);
+                }
+
+                Users u = list.get(indexes.get(parts[0]));
+                switch (parts[3])
+                {
+                    case "I":
+                        u.addPenalty(parts[1]);
+                        break;
+                    case "C":
+                        u.setSolved(parts[1],parts[2]);
+                        break;
+                }
+                line = bf.readLine();
+            }
             Collections.sort(list);
-            for (User u :
+            for (Users u :
                     list) {
-                System.out.printf("%s %d %d\n",u.id,u.solved.size(),u.timing);
+                System.out.println(u.toString());;
             }
-            System.out.println();
-
         }
+
     }
-    static class User implements Comparable<User>{
+    static class Users implements  Comparable<Users>
+    {
+        String id ;
+        long penalty;
+        HashMap<String,Integer> unsolvedPenalty;
+        HashSet<String> solved;
+        HashMap<String,Long> solvedPenalties ;
         @Override
-        public int compareTo(User o) {
-            if(o.solved.size() == solved.size())
+        public int compareTo(Users o) {
+            if(solved.size() == o.solved.size())
             {
-                if(o.timing == timing)
-                    return Integer.compare(id,o.id);
-
-                return timing - o.timing;
-            }
-            else return o.solved.size() - solved.size();
-        }
-
-        ArrayList<String> solved;
-        Map<String,Integer> incorrect;
-        int timing = 0;
-        int id = 0;
-        public User(String id)
-        {
-            this.id = Integer.valueOf(id);
-            solved = new ArrayList<String>();
-            incorrect = new HashMap<>();
-        }
-        public boolean add(String question_id)
-        {
-            if(!solved.contains(question_id))
-            {
-                if(incorrect.containsKey(question_id))
+                if(o.penalty == penalty)
                 {
-                    timing += incorrect.get(question_id);
+                    return Integer.compare(Integer.valueOf(id),Integer.valueOf(o.id));
                 }
-                solved.add(question_id);
-                return true;
+                return penalty < o.penalty ? -1 : 1;
             }
-            return false;
+            return solved.size()> o.solved.size() ? -1 : 1;
         }
-        private void addIncorrect(String id)
+
+        public Users(String id)
         {
-            if(incorrect.containsKey(id))
-                incorrect.put(id,incorrect.get(id)+20);
-            else incorrect.put(id,20);
+            this.id = id;
+            penalty = 0;
+            unsolvedPenalty = new HashMap<>();
+            solved = new HashSet<>();
+            solvedPenalties = new HashMap<>();
         }
-        public void incTime(String time)
+        public void setSolved(String q,String time)
         {
-            timing += Integer.valueOf(time);
+            if(solved.contains(q))
+                return;
+            solved.add(q);
+            solvedPenalties.put(q,Long.valueOf(time) + unsolvedPenalty.getOrDefault(q,0));
+            penalty += solvedPenalties.get(q);
         }
-        public void incTime(int time)
+        public void addPenalty(String q)
         {
-            timing += time;
+            if(unsolvedPenalty.containsKey(q))
+                unsolvedPenalty.put(q,unsolvedPenalty.get(q)+20);
+            else unsolvedPenalty.put(q,20);
+        }
+        @Override
+        public String toString() {
+            return String.format("%s %s %s",id,solved.size(),penalty);
         }
     }
 }
