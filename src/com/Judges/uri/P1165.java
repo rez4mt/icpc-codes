@@ -15,7 +15,8 @@ public class P1165 {
         for(int i = 0 ; i < t ; i ++)
         {
             num = sc.nextInt();
-            for( int j = 2 ; j <= num/2 ; j ++)
+            int v = (int)Math.sqrt(num);
+            for( int j = 2 ; j <= v ; j ++)
             {
                 if(num % j == 0)
                 {
