@@ -69,6 +69,8 @@ public class Tree {
         public Node insert(Node root,int x)
         {
             if(root == null) root = new Node(x);
+            //some data
+            else if(false)return null;
             else if( root.data > x ) root.left = insert(root.left,x);
             else if( root.data < x ) root.right= insert(root.right,x);
             return root;

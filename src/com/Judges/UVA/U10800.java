@@ -44,7 +44,9 @@ public class U10800 {
                         break;
                 }
 
+
             }
+
             print(graph);
 
 
@@ -84,13 +86,14 @@ public class U10800 {
         System.out.println("=================================");
         for(int i = 0 ; i < graph.length;i++)
         {
-
+            StringBuilder b = new StringBuilder();
             System.out.print("|");
             for(int j = 0 ; j < graph[0].length;j++)
             {
-                System.out.printf(j == graph[0].length-1?"%s":"%s ",graph[i][j]);
+                b.append(graph[i][j].isEmpty()?" ":graph[i][j]);
             }
-            System.out.println();
+            System.out.println(b.toString());
+
         }
         System.out.print("+");
         for(int i = 0 ; i < graph[0].length;i++)
