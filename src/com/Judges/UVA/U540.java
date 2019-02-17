@@ -3,69 +3,88 @@ package com.Judges.UVA;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.io.PrintWriter;
+import java.util.*;
 
 public class U540 {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int C = 1;
+        FR sc = new FR();
+        PrintWriter pw = new PrintWriter(System.out);
+        int c =0;
         while (true)
         {
-            int T = Integer.parseInt(br.readLine());
-            HashMap<Integer,Integer> p = new HashMap<>();
-            LinkedList<LinkedList<Integer>> teams = new LinkedList<>();
-            LinkedList<Integer> queue = new LinkedList<>();
-
-            if( T == 0 )
+            int team_count = sc.nextInt();
+            if(team_count == 0)
                 break;
+            if(c++!=0)
+                pw.println();
+            pw.printf("Scenario #%d\n",c);
 
-            System.out.printf("Scenario #%d\n",C++);
-
-
-            for(int i = 0 ; i < T;i++)
+            HashMap<String,Integer> teams = new HashMap<>();
+            HashMap<Integer,ArrayDeque<String>> teams_q_id = new HashMap<>();
+            ArrayDeque<Integer> team_q = new ArrayDeque<>();
+            for(int i = 0 ; i < team_count ;i++)
             {
-                StringTokenizer st = new StringTokenizer(br.readLine());
-                int count = Integer.parseInt(st.nextToken());
-                int team_count = Integer.parseInt(st.nextToken());
-                for(int j = 1 ; j < count ; j ++)
-                    p.put(Integer.parseInt(st.nextToken()),i);
-                teams.add(i,new LinkedList<>());
+                int players_count = sc.nextInt();
+                for(int j = 0 ; j < players_count ; j++)
+                    teams.put(sc.next(),i);
             }
-            boolean running = true;
-            while (running)
+            boolean stopped = false;
+            while (!stopped)
             {
-                String s = br.readLine();
-                switch (s)
+                String op = sc.next();
+                switch (op.charAt(0))
                 {
-
-                    case "DEQUEUE":
-                        while(queue.size() != 0 && teams.get(queue.get(0)).size() == 0) {
-                            queue.removeFirst();
-                        }
-                        if(queue.size() != 0) {
-                            System.out.println(teams.get(queue.get(0)).removeFirst());
-                        }
-                        break;
-                    case "STOP":
-                        running = false;
-                        break;
-                    default:
-                        String[] aa = s.split(" ");
-                        int team_name = Integer.parseInt(aa[1]);
-                        int team_id = p.get(team_name);
-                        if(teams.get(team_id).isEmpty())
+                    case 'E':
+                        //check if q is available
+                        String player_id = sc.next();
+                        int team_id = teams.get(player_id);
+                        if(!teams_q_id.containsKey(team_id) || !team_q.contains(team_id))
                         {
-                            queue.add(team_id);
+                            teams_q_id.put(team_id,new ArrayDeque<>());
+                            team_q.add(team_id);
                         }
-                        teams.get(team_id).add(team_name);
+                        teams_q_id.get(team_id).add(player_id);
+                        break;
+                    case 'D':
+                        String player = teams_q_id.get(team_q.peek()).remove();
+                        pw.append(player);
+                        pw.append('\n');
+                        if(teams_q_id.get(team_q.peek()).isEmpty())
+                            team_q.remove();
+
+                        break;
+                    case 'S':
+                        stopped = true;
                         break;
                 }
             }
-            System.out.println();
+        }
+        pw.append("\n");
+        pw.flush();
+        pw.close();
+    }
+
+    static class FR{
+        BufferedReader br;
+        StringTokenizer st;
+        public FR()
+        {
+            br = new BufferedReader(new InputStreamReader(System.in));
         }
 
+        String next() throws IOException
+        {
+            if(st == null || !st.hasMoreTokens())
+            {
+                st = new StringTokenizer(br.readLine());
+                return next();
+            }
+
+            return st.nextToken();
+        }
+        int nextInt() throws IOException {
+            return Integer.parseInt(next());
+        }
     }
 }

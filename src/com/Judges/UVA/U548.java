@@ -3,21 +3,24 @@ package com.Judges.UVA;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.*;
 
 public class U548 {
+    static HashMap<String,Integer> map;
     public static void main(String[] args)throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        map = new HashMap<>();
         Tree t = new Tree();
         String[] inString = br.readLine().split(" ");
         String[] preString = br.readLine().split(" ");
+        for(int i = 0 ; i < inString.length ; i++)
+            map.putIfAbsent(inString[i],map.size());
 
         t.root = buildTree(inString,preString);
-
+        t.setup(inString.length);
+        t.bfs();
+        System.out.println(Arrays.toString(t.distTo));
 
     }
     public static Node buildTree(String[] inorder, String[] postorder) {
@@ -55,6 +58,7 @@ public class U548 {
     static class Node{
         String data = "";
         Node left,right;
+
         public Node(String data)
         {
             this.data = data;
@@ -63,6 +67,8 @@ public class U548 {
     }
     static class Tree{
         Node root;
+        int[] distTo;
+        int nv;
         public void inOrder(Node root)
         {
             if(root == null)
@@ -72,45 +78,34 @@ public class U548 {
             inOrder(root.right);
 
         }
-        boolean getPath(Node root, ArrayList<String> arr, String x)
+        public void setup(int n)
         {
-            if (root==null)
-                return false;
-            arr.add(root.data);
-            if (root.data.equals(x))
-                return true;
-            if (getPath(root.left, arr, x) || getPath(root.right, arr, x))
-                return true;
-            arr.remove(arr.size()-1);
-            return false;
+            distTo = new int[n];
+            nv = n;
         }
-        ArrayList<String> path = new ArrayList<>();
-        void pathBetweenNodes(Node root, String n1, String n2)
+        public void bfs()
         {
-            ArrayList<String> path1= new ArrayList<String>();
-            ArrayList<String> path2=new ArrayList<String>();
+            for(int i = 0 ; i < nv; i++)
+                distTo[i] = Integer.MAX_VALUE;
 
-            getPath(root, path1, n1);
-            getPath(root, path2, n2);
+            ArrayDeque<Node> q = new ArrayDeque<>();
+            distTo[map.get(root.data)] = 0;
+            q.add(root);
+            while (!q.isEmpty())
+            {
+                Node temp = q.remove();
 
-            int intersection = -1;
-            int i = 0, j = 0;
-            while (i != path1.size() || j != path2.size()) {
-
-                if (i == j && path1.size() > i && path2.size() > i && path1.get(i).equals(path2.get(i))) {
-                    i++;
-                    j++;
+                if(temp.left!=null)
+                {
+                    distTo[map.get(temp.left.data)] = distTo[map.get(temp.data)]+Integer.parseInt(temp.data);
+                    q.add(temp.left);
                 }
-                else {
-                    intersection = j - 1;
-                    break;
+                if(temp.right!=null)
+                {
+                    distTo[map.get(temp.right.data)] = distTo[map.get(temp.data)]+Integer.parseInt(temp.data);
+                    q.add(temp.right);
                 }
             }
-            for ( i = path1.size() - 1; i > intersection; i--)
-                path.add( path1.get(i));
-
-            for ( i = intersection; i < path2.size(); i++)
-                System.out.print( path2.get(i) + " ");
         }
     }
 }

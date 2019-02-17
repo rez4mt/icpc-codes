@@ -20,9 +20,11 @@ public class U10954 {
             long sum = 0 ;
             while (queue.size()>1)
             {
-                long l = queue.remove() + queue.remove();
+                long a = queue.poll();
+                long b = queue.poll();
+                long l = a + b;
                 sum+=l;
-                queue.add(sum);
+                queue.offer(l);
             }
             System.out.println(sum);
         }
