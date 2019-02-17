@@ -1,5 +1,6 @@
 package com.Judges.UVA;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class U100 {
@@ -9,28 +10,29 @@ public class U100 {
         {
             int a = sc.nextInt();
             int b = sc.nextInt();
-            System.out.printf("%d %d %d\n",a,b,check(a,b));
+            int max = Math.max(a,b);
+            long c = -1;
+            for(int i = Math.min(a,b) ; i <= max;i++)
+            {
+
+                int aa = cycle(i);
+                c = Math.max(c,aa);
+            }
+            System.out.printf("%d %d %d\n",a,b,c);
         }
     }
-    public static int check(int a , int b )
+    public static int cycle(int n)
     {
-        int min = Math.min(a,b);
-        int max = Math.max(a,b);
-        int count = 0 , res = 0;
-        while (min<=max)
+
+        int count = 1;
+        while (n!=1)
         {
-            int x = min;
-            while (x!=1)
+            if(n%2==1)
             {
-                if(x%2==0)
-                    x = x/2;
-                else x = (3*x)+1;
-                count++;
-            }
-            res = Math.max(count,res);
-            count = 1;
-            min++;
+                n = 3*n+1;
+            }else n = n/2;
+            count++;
         }
-        return res;
+        return count;
     }
 }

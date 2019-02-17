@@ -12,7 +12,6 @@ public class U1185 {
             for (int j = n; j > 1; j--) {
                 numDigits += Math.log10(j);
             }
-
             numDigits = Math.floor(numDigits) + 1;
             System.out.println((int) numDigits);
         }
