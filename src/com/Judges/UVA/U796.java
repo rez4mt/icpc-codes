@@ -83,7 +83,7 @@ public class U796 {
         int nv;
         ArrayList<Integer>[] adj;
         boolean marked[];
-        int[] level,sLevel;
+        int[] disc,low;
         int count;
         int[] id;
         PriorityQueue<Edge> links;
@@ -96,14 +96,14 @@ public class U796 {
                 adj[i] = new ArrayList<Integer>();
             id = new int[n];
             count = 0;
-            level = new int[n];
-            sLevel = new int[n];
+            disc = new int[n];
+            low = new int[n];
             links = new PriorityQueue<>();
             marked = new boolean[n];
             for(int i = 0 ; i < n ; i++)
             {
-                sLevel[i] = Integer.MAX_VALUE;
-                level[i] = Integer.MAX_VALUE;
+                disc[i] = Integer.MAX_VALUE;
+                low[i] = Integer.MAX_VALUE;
             }
         }
 
@@ -120,23 +120,26 @@ public class U796 {
         public void dfs(int v,int u)
         {
             marked[v] = true;
-            level[v] = sLevel[v] = count++;
-
+            low[v] = disc[v] = ++count;
             for (int w : adj(v)) {
                 if(w == u)
                     continue;
+
                 if(marked[w])
                 {
-                    level[v] = Math.min(level[v],sLevel[w]);
-                }else
-                {
-                    dfs(w,v);
-                    level[v] = Math.min(level[v],level[w]);
-                    if(level[w] > sLevel[v])
-                    {
-                        links.add(new Edge(v,w));
-                    }
+
+                    low[w] = Math.min(low[w],disc[v]);
+                    continue;
                 }
+
+
+                dfs(w,v);
+                low[v] = Math.min(low[v],low[w]);
+                if(low[w] == disc[w])
+                {
+                    links.add(new Edge(v,w));
+                }
+
             }
 
         }
