@@ -20,7 +20,31 @@ public class U445 {
                 StringBuilder b = new StringBuilder();
                 if(line == null)
                     break;
-                while (pos<line.length())
+                BigInteger number = BigInteger.ZERO;
+                for(int i = 0 ; i < line.length() ; i++)
+                {
+                    char c = line.charAt(i);
+                    if(c=='b')
+                    {
+                        for(BigInteger j = BigInteger.ZERO; j.compareTo(number) < 0 ; j = j.add(BigInteger.ONE))
+                            b.append(' ');
+                    }else if(c == '!')
+                    {
+                        b.append("\r\n");
+                    }else
+                    {
+                        if(Character.isDigit(c))
+                        {
+                            number = number.multiply(BigInteger.TEN).add(BigInteger.valueOf(Character.digit(c,10)));
+                        }else
+                        {
+                            for(BigInteger j = BigInteger.ZERO; j.compareTo(number) < 0 ; j = j.add(BigInteger.ONE))
+                                b.append(c);
+                            number = BigInteger.ZERO;
+                        }
+                    }
+                }
+                /*while (pos<line.length())
                 {
                     while (!isEnd(line))
                     {
@@ -37,9 +61,8 @@ public class U445 {
                                 b.append(c);
                         }
                     }
-                    pos++;
                     b.append("\r\n");
-                }
+                }*/
                 out.print(b.toString());
                 if(line.isEmpty() || line.charAt(line.length()-1) == '!' )
                     out.println();
