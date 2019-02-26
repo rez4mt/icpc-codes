@@ -1,23 +1,46 @@
 package com.Judges.UVA;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class U10044 {
     public static void main(String[] args) {
+        String erdos = "Erdos, P.";
         Scanner sc = new Scanner(System.in);
         int T = sc.nextInt();
+        int c = 1;
         while (T-->0)
         {
             int N = sc.nextInt();
             int M = sc.nextInt();
             sc.nextLine();
-            Graph g = new Graph(N*2);
+            Graph g = new Graph((N*2) +1);
+            HashMap<String,Integer> map = new HashMap<>();
             for(int i = 0 ; i < N ; i++)
             {
-                String l = sc.nextLine();
-                
+                String[] names = sc.nextLine().split(":")[0].split(",");
+                String[] us = new String[names.length/2];
+                for(int j = 0 ; j < names.length;j+=2)
+                {
+                    String name = names[j].trim()+", "+names[j+1].trim();
+                    if(!map.containsKey(name))
+                        map.put(name,map.size());
+                    us[j/2] = name;
+                }
+                for(int j = 0 ; j < us.length;j++)
+                    g.addEdge(map.get(us[j]),map.get(us[(j+1) % us.length]));
+            }
+            g.bfs(map.get(erdos));
+            System.out.println("Scenario "+(c++));
+            for(int i = 0 ; i < M ; i++)
+            {
+                String n = sc.nextLine();
+                int dist;
+                if(!map.containsKey(n))
+                {
+                    dist = Integer.MAX_VALUE;
+                }else
+                    dist = g.distTo[map.get(n.trim())];
+                System.out.printf("%s %s\n",n,dist == Integer.MAX_VALUE ? "infinity" : dist);
             }
         }
     }
