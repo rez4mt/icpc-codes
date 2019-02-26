@@ -22,80 +22,41 @@ public class U108 {
             {
                 pre[0][i] = pre[0][i-1] + nums[0][i];
                 pre[i][0] = pre[i-1][0] + nums[i][0];
-                if(nums[0][i] > max)
-                {
-                    max = nums[0][i];
-                    x = 0;
-                    y = i;
-                }else if(nums[i][0] > max)
-                {
-                    max = nums[i][0];
-                    x = i ;
-                    y = 0;
-                }else if(pre[0][i] > max)
-                {
-                    max = pre[0][i];
-                    x = 0;
-                    y = i;
-                }else if(pre[i][0] > max)
-                {
-                    x = i;
-                    y = 0;
-                    max = pre[i][0];
-                }
-
             }
             for(int i = 1 ; i < N ; i++) {
                 for (int j = 1; j < N; j++)
                 {
                     pre[i][j] = ( pre[i][j-1] + pre[i-1][j] ) - pre[i-1][j-1] + nums[i][j];
-                    if(max < pre[i][j])
-                    {
-                        x = i;
-                        y = j;
-                        max = pre[i][j];
-                    }
                 }
             }
-
-
             int sum = Integer.MIN_VALUE;
-            int tox = -1,toy = -1;
-            if(x == 0 && y == 0)
+            print(pre);
+            for(int i = 0 ; i < N;i++)
             {
-                System.out.println(nums[0][0]);
-                continue;
-            }else if (x == 0 && y!=0)
-            {
-                max = pre[x][y] - pre[x][y-1];
-            }else if( x!=0 && y == 0)
-            {
-                max = pre[x][y] - pre[x-1][y];
-            }else
-            {
-                max = pre[x][y] - pre[x-1][y] - pre[x][y-1] + pre[x-1][y-1];
-            }
-            for(int i = x ; i>=0 ; i--)
-            {
-                for(int j = y ; j>=0 ; j--)
+                for(int j = 0 ; j < N ; j++)
                 {
-                    if(i == 0 && j == 0)
+                    for(int cx = i; cx < N ; cx++)
                     {
-                        sum = pre[i][j];
-                    }else if (i == 0 && j!=0)
-                    {
-                        sum = pre[i][j] - pre[i][j-1];
-                    }else if( i!=0 && j == 0)
-                    {
-                        sum = pre[i][j] - pre[i-1][j];
-                    }else
-                    {
-                        sum = pre[i][j] - pre[i-1][j] - pre[i][j-1] + pre[i-1][j-1];
+                        for(int cy = j ; cy < N ;cy++)
+                        {
+                            if( i == 0 && j == 0)
+                            {
+                                sum = pre[i][j];
+                            }else if( i == 0)
+                            {
+                                sum = pre[cx][cy] - pre[cx][j-1];
+                            }else if( j == 0)
+                            {
+                                sum = pre[cx][cy] - pre[i-1][cy];
+                            }else
+                            {
+                                sum = pre[cx][cy] - (pre[i-1][cy]+pre[cx][j-1]) + pre[i-1][j-1];
+                            }
+                            max = Math.max(max,sum);
+                        }
                     }
-                    max = Math.max(max,sum);
                 }
             }
-
             System.out.println(max);
         }
     }
@@ -105,7 +66,7 @@ public class U108 {
         for(int i = 0 ; i < aa.length;i++)
         {
             for(int j = 0 ; j < aa.length ; j++)
-                System.out.print(aa[i][j] + " ");
+                System.out.printf("%-3s",aa[i][j] + " ");
             System.out.println();
         }
     }

@@ -1,32 +1,62 @@
 package com.Judges.UVA;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class U11342 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int T = sc.nextInt();
-        while (T-->0)
+    static int MAX = 50000;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter pw = new PrintWriter(System.out);
+        HashMap<Integer,N> vals = new HashMap<>();
+        for(int i = 0 ; i*i <= MAX ;i++)
         {
-            int N = sc.nextInt();
-            int sqrt = (int) Math.sqrt(N);
-            boolean found = false;
-            for(int i = 0 ; i <= sqrt && !found ;i++)
+            int i2 = i*i;
+            for(int j = 0 ; i2 + j*j <=MAX;j++)
             {
-                int i2 = i*i;
-                for(int j = i ; j <=sqrt && !found;j++)
+                int j2 = j*j;
+                for(int k = 0 ; k*k + j2 + i2 <= MAX ; k++)
                 {
-                    int j2= j*j;
-                    double sqrt2 = Math.sqrt(N-i2-j2);
-                    if(i2+j2+(sqrt2*sqrt) == N)
-                    {
-                        System.out.printf("%d %d %d\n",i,j,sqrt);
-                        found = true;
-                    }
+                    int res = i2+j2+k*k;
+                    if(vals.containsKey(res))
+                        continue;
+                    vals.put(res,new N(i,j,k));
+                    //vals.put(res,String.format("%d %d %d",i,j,k));
                 }
             }
-            if(!found)
-                System.out.println(-1);
+        }
+        int T = Integer.parseInt(br.readLine());
+        while (T-->0)
+        {
+            int N = Integer.parseInt(br.readLine());
+            if(vals.containsKey(N))
+            {
+                pw.println(vals.get(N));
+            }else
+            {
+                pw.println(-1);
+            }
+        }
+        pw.flush();
+    }
+    static class N{
+        int a,b,c;
+        public N(int a,int b,int c)
+        {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+
+        @Override
+        public String toString() {
+            int[] aa = new int[]{a,b,c};
+            Arrays.sort(aa);
+            //return String.format("%d %d %d",aa[0],aa[1],aa[2]);
+            return aa[0] + " " + aa[1] +" "+aa[2];
         }
     }
 }
