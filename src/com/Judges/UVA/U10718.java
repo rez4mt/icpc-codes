@@ -11,10 +11,8 @@ public class U10718 {
             int a = sc.nextInt();
             int b = sc.nextInt();
             int c = sc.nextInt();
-            System.out.println(BigInteger.valueOf(a).toString(2));
-            System.out.println(BigInteger.valueOf(b).toString(2));
-            System.out.println(BigInteger.valueOf(c).toString(2));
-            System.out.println(new BigInteger("111110",2).toString());
+            long MASK = 0xFFFFFFF0;
+
         }
     }
 }

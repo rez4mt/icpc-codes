@@ -11,62 +11,38 @@ public class U10020 {
         int T = sc.nextInt();
         while (T-->0)
         {
-            int m = sc.nextInt();
-            ArrayList<S> list = new ArrayList<>();
-            while(true)
+            int M = sc.nextInt();
+            int current_l = Integer.MIN_VALUE,distance = Integer.MAX_VALUE;
+            while (true)
             {
-                int a = sc.nextInt();
-                int b = sc.nextInt();
-                if(a==0 && b==0)
+                int l,r;
+                l = sc.nextInt();
+                r = sc.nextInt();
+                if(l==0 && r==0)
                     break;
-                list.add(new S(a,b));
-            }
-            int i=1;
-            int dist_r = Integer.MAX_VALUE,dist_l = Integer.MAX_VALUE;
-            Collections.sort(list);
-            Stack<S> stack = new Stack<>();
-            int current_l = 0;
-            while (dist_r < m)
-            {
-                int L = current_l;
-
-                int f = 0;
-                for(;i<list.size();i++)
+                if(l<=0 && (distance>r-l && r>=M ))
                 {
-                    if(list.get(i).L>current_l)
-                        break;
-                    else if(list.get(i).R>= L)
+                    if(distance > r-l)
                     {
-                        L = list.get(i).R;
-                        f=i;
+                        current_l = l;
+                        distance = r-l;
                     }
                 }
-                if(f==0)
-                    break;
-                stack.push(list.get(i));
-                current_l = dist_r =  L;
+
             }
-            if(dist_r>=m)
-            {
-                System.out.println(stack.size());
-                while (!stack.empty())
-                {
-                    S t = stack.pop();
-                    System.out.printf("%d %d\n",t.L,t.R);
-                }
-            }else
+            if(current_l+(distance)<M)
             {
                 System.out.println(0);
+            }else
+            {
+                System.out.println(current_l+" "+(distance-current_l));
             }
+
+            if(T!=0)
+                System.out.println();
         }
     }
-    static class S implements Comparable<S>{
-        @Override
-        public int compareTo(S o) {
-            if(o.L==L)
-                return 0;
-            return L < o.L?1:-1;
-        }
+    static class S{
 
         int L,R;
         public S(int L,int R)
