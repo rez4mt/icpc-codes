@@ -1,4 +1,4 @@
-package com.Judges.uri;
+package com.Judges.UVA;
 
 import java.util.Scanner;
 

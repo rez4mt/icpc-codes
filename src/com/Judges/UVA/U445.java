@@ -73,20 +73,5 @@ public class U445 {
         out.flush();
         out.close();
     }
-    static boolean isEnd(String data)
-    {
-        return pos>=data.length() || data.charAt(pos) == '!';
-    }
-    static char getChar(String data)
-    {
-        return data.charAt(pos++);
-    }
-    static BigInteger num(String data)
-    {
-        int startPos = pos;
-        while (Character.isDigit(data.charAt(pos)))
-            pos++;
-        return new BigInteger(data.substring(startPos,pos));
-    }
 
 }
