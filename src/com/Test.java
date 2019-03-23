@@ -1,38 +1,25 @@
-package com;
-
-
-import java.io.IOException;
-import java.math.BigInteger;
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.Scanner;
-
-public class Test {
-
-
-
-    static int MAX = 1000000;
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        long[] fib = new long[60];
-        System.out.println();
-        /*HashMap<Integer,Integer> m ;
-        m = new  HashMap<Integer, Integer>();
-        fib[0] = 1;
-        fib[1] = 1;
-        for(int i = 2;i < fib.length; i++)
+public class Test{
+    public static void main(String[] args)
+    {
+        int res = 0;
+        for(int i = 0 ; i < 101 ; i++)
         {
-            fib[i] = fib[i-1]+fib[i-2];
+             res += method(i);
         }
-        int A = sc.nextInt();
-        int N=fib.length-1;
-        while (A < fib[N])
-            N--;
+        System.out.println(res);
+    }
+    private static int method(int a)
+    {
+        System.out.println(a);
+        int x = 0 ;
+        while (a!=0)
+        {
+            if(a%10==1)
+                x++;
+            a = a/10;
 
-        System.out.println(N);
-        System.out.println(A);
-        System.out.println(BigInteger.valueOf(fib[N]).toString(2));
-        System.out.println(BigInteger.valueOf(A).toString(2));*/
-
+        }
+        System.out.println("this is x : "+x);
+        return x;
     }
 }

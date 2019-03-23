@@ -17,7 +17,13 @@ public class U391 {
 
                     switch (line.charAt(i)) {
                         case 's':
+
                             i++;
+                            if(star)
+                            {
+                                System.out.println(line.charAt(i));
+                                continue;
+                            }
                             while (i < line.length() && (line.charAt(i) == '0' || line.charAt(i) == '.' || (Character.isDigit(line.charAt(i)))))
                                 i++;
                             i--;
