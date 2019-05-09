@@ -93,7 +93,7 @@ public class U796 {
             nv = n;
             adj = (ArrayList<Integer>[]) new ArrayList[n];
             for(int i = 0 ; i < n; i++)
-                adj[i] = new ArrayList<Integer>();
+                adj[i] = new ArrayList<>();
             id = new int[n];
             count = 0;
             disc = new int[n];
@@ -122,24 +122,16 @@ public class U796 {
             marked[v] = true;
             low[v] = disc[v] = ++count;
             for (int w : adj(v)) {
-                if(w == u)
-                    continue;
-
-                if(marked[w])
+                if(!marked[w])
                 {
-
-                    low[w] = Math.min(low[w],disc[v]);
-                    continue;
+                    dfs(w,v);
+                    if(low[w]>disc[v])
+                    {
+                        links.offer(new Edge(w,v));
+                    }
+                }else {
+                    low[v] = Math.min(low[v],low[w]);
                 }
-
-
-                dfs(w,v);
-                low[v] = Math.min(low[v],low[w]);
-                if(low[w] == disc[w])
-                {
-                    links.add(new Edge(v,w));
-                }
-
             }
 
         }
