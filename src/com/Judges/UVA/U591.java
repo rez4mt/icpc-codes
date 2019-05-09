@@ -27,7 +27,6 @@ public class U591 {
                     continue;
                 count+= Math.abs(list[i]-avg);
             }
-
             System.out.printf("The minimum number of moves is %d.\n",count/2);
             System.out.println();
         }
