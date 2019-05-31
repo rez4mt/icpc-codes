@@ -8,31 +8,19 @@ public class U10812 {
         int T = sc.nextInt();
         while (T-->0)
         {
-            long s = sc.nextLong();
-            long d = sc.nextLong();
-            if(d>=s)
+            int s = sc.nextInt();
+            int d = sc.nextInt();
+            if(d>s)
             {
                 System.out.println("impossible");
             }else
             {
-                if((s%2 + d%2) % 2 != 0)
+                int x = (s-d)/2;
+                int y = s-x;
+                if(x<0 || y<0 || x+y!=s || Math.abs(x-y)!=d)
                 {
                     System.out.println("impossible");
-                    continue;
-                }
-                long a = (s/2) + (d/2);
-                long b = s - a ;
-
-                if(a<0 || b<0)
-                {
-                    System.out.println("impossible");
-                }else
-                {
-                    long max = Math.max(a,b);
-                    long min = Math.min(a,b);
-                    System.out.print(max+" ");
-                    System.out.println(min);
-                }
+                }else System.out.printf("%d %d\n",Math.max(x,y),Math.min(x,y));
             }
         }
     }
