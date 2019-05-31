@@ -1,6 +1,5 @@
 package com.ICPC.Sharif.P96;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.util.Arrays;
 import java.util.Scanner;

@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class P1607 {
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int n = new Integer(bf.readLine());
+        int n = Integer.valueOf(bf.readLine());
         while (n-->0)
         {
             String[] line = bf.readLine().split(" ");
