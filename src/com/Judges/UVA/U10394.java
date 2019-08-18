@@ -37,14 +37,11 @@ public class U10394 {
         String line ;
         int index = 0;
         int[][] pairs = new int[100002][2];
-        for(int i = 2 ; i < MAX ; i++)
+        for(int i = 2 ; i < MAX && index<100001; i++)
         {
-            if(index > 100001)
-                break;
+
             if(prime[i] && prime[i+2])
                 pairs[index++] = new int[]{i,i+2};
-
-
         }
         Scanner sc = new Scanner(System.in);
         //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
