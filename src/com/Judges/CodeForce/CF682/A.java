@@ -13,11 +13,10 @@ public class A {
         long count = 0;
         for(int i = 1 ; i <= A ; i++)
         {
-            int mod = i % 5;
-            if(mod>=B)
+            int m = 5- (i % 5 );
+            if(m > B)
                 continue;
-            count+=(B - (5-mod))/5;
-            count++;
+            count += (B + 5 - m) / 5;
         }
         System.out.println(count);
     }

@@ -8,39 +8,40 @@ import java.util.StringTokenizer;
 
 public class U1210 {
     public static void main(String[] args) throws Exception {
-        int max = 10000;
+        int max = 10000+1;
         ArrayList<Integer> primes = new ArrayList<>();
         primes.add(2);
         primes.add(3);
-        for (int i = 4; i <= max; i++) {
+        for (int i = 5; i <= max; i+=2) {
             boolean p = true;
-            for (int j = 2; j * j <= i; j++) {
+            int sqrt =(int) Math.sqrt(i);
+            for (int j = 2; j<= sqrt; j++) {
                 if (i % j == 0) {
                     p = false;
                     break;
                 }
             }
-            if (p) {
+            if (p)
                 primes.add(i);
-            }
         }
-        int[] answers = new int[max+1];//including 0
-        for (int startIndex = 0; startIndex < primes.size(); startIndex++) {
+        int[] ans = new int[max];
+        for(int i = 0 ; i< primes.size();i++)
+        {
             int sum = 0;
-            for (int currentIndex = startIndex; currentIndex < primes.size(); currentIndex++) {
-                sum += primes.get(currentIndex);
-                if (sum > max) break;
-                answers[sum]++; // for each sum, how many times (the sum of n primes) made that sum.
+            for(int j = i; j < primes.size();j++)
+            {
+                sum+=primes.get(j);
+                if(sum>max)
+                    break;
+                ans[sum] ++;
             }
         }
-
         FastReader fs = new FastReader();
         while (true) {
             int a = fs.nextInt();
             if (a==0) return;
-            System.out.println(answers[a]);
+            System.out.println(ans[a]);
         }
-
     }
 
     static class FastReader {
