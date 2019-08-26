@@ -9,7 +9,7 @@ public class A {
         int a = n/2;
         int b = n%2;
         StringBuffer buffer = new StringBuffer();
-        if(n%2 == 0 )
+        if(n % 2 == 0 )
         {
             System.out.println(a);
             for(int i = 0 ; i < a ; i++)

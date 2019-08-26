@@ -14,9 +14,8 @@ public class U10954 {
             PriorityQueue<Long> queue = new PriorityQueue<>();
 
             for(int i = 0 ; i < n ; i ++)
-            {
                 queue.offer(sc.nextLong());
-            }
+
             long sum = 0 ;
             while (queue.size()>1)
             {
