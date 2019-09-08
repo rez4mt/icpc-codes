@@ -17,7 +17,7 @@ public class P1174 {
             num = sc.nextDouble();
             if(num<=10)
             {
-                System.out.printf("B[%d] = %.1f\n",i,num);
+                System.out.printf("donald[%d] = %.1f\n",i,num);
             }
         }
     }

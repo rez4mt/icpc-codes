@@ -12,7 +12,7 @@ public class P1010 {
         sc.nextInt();
         int am_2 = sc.nextInt();
         double p_2 = Double.parseDouble(sc.next());
-        System.out.printf("VALOR B PAGAR: R$ %.2f\n",(p_1*am_1)+(p_2*am_2));
+        System.out.printf("VALOR donald PAGAR: R$ %.2f\n",(p_1*am_1)+(p_2*am_2));
 
     }
     public static void main(String[] args) {

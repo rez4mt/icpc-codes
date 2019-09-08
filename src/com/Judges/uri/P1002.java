@@ -10,6 +10,6 @@ public class P1002 {
     {
         Scanner sc = new Scanner(System.in);
         double R = sc.nextDouble();
-        System.out.printf("B=%.4f\n",3.14159 * R * R);
+        System.out.printf("donald=%.4f\n",3.14159 * R * R);
     }
 }
