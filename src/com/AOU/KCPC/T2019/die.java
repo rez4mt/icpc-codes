@@ -11,7 +11,7 @@ public class die {
         int T = sc.nextInt();
         while (T-->0)
         {
-            
+
         }
     }
 }
