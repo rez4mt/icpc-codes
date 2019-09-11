@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class U1121 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        /*Scanner sc = new Scanner(System.in);
         while (sc.hasNext())
         {
             int N;
@@ -33,6 +33,30 @@ public class U1121 {
                 sum = 0;
             }
             System.out.println(MIN==Integer.MAX_VALUE?0:MIN);
+        }*/
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext())
+        {
+            int N = sc.nextInt();
+            long S = sc.nextLong();
+            long sum = 0;
+            int[] list = new int[N];
+            int min = Integer.MAX_VALUE;
+            for(int i = 0, j = 0 ; i < N ; i++)
+            {
+                list[i] = sc.nextInt();
+                sum+=list[i];
+                while (sum>=S)
+                {
+                    min = Math.min(min , i - j);
+                    sum-=list[j++];
+                }
+
+            }
+            if(min == Integer.MAX_VALUE)
+                System.out.println(0);
+            else System.out.println(min+1);
         }
+
     }
 }
