@@ -1,4 +1,4 @@
-package com.AOU.KCPC.T2019;
+package com.AOU.KCPC.T2019.Training1;
 
 import java.util.Scanner;
 

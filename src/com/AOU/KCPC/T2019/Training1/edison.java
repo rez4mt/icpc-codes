@@ -1,4 +1,4 @@
-//package com.AOU.KCPC.T2019;
+package com.AOU.KCPC.T2019.Training1;//package com.AOU.KCPC.T2019;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class edison {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner sc = new Scanner(new File("edison.in"));
+        Scanner sc = new Scanner(new File("com.AOU.KCPC.T2019.Training1.edison.in"));
         int T = sc.nextInt();
         while (T-->0)
         {
