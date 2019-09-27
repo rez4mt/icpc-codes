@@ -5,8 +5,9 @@ import com.Judges.uri.*;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        new P1004();
+
+        int VAL = Integer.MAX_VALUE;
+
 
     }
     public static void log(Object... o)

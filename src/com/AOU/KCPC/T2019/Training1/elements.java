@@ -1,4 +1,4 @@
-//package com.AOU.KCPC.T2019;
+package com.AOU.KCPC.T2019.Training1;//package com.AOU.KCPC.T2019;
 
 import java.io.*;
 import java.util.Arrays;
@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class elements {
     public static void main(String[] args) throws Exception {
-        fr sc = new fr(new File("elements.in"));
+        fr sc = new fr(new File("com.AOU.KCPC.T2019.Training1.elements.in"));
         PrintWriter pw = new PrintWriter(System.out);
         //Scanner sc = new Scanner(System.in);
         int T = sc.nextInt();
