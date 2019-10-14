@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/r_mot/Desktop/java-app/URI/URI/cpp/main.cpp
+iostream
+-
+vector
+-
+cstring
+-
+algorithm
+-
+

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class U10653 {
@@ -37,6 +38,7 @@ public class U10653 {
         FastReader fr = new FastReader();
         //int T = fr.nextInt();
         int[] move_x = new int[]{0,0,1,-1};
+
         int[] move_y = new int[]{1,-1,0,0};
         while (true)
         {
