@@ -4,9 +4,10 @@ import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Array {
-    public static void main(String[] args) {
+    public static void pq(String[] args) {
         Scanner sc = new Scanner(System.in);
         int T = sc.nextInt();
         while (T-->0)
@@ -31,7 +32,32 @@ public class Array {
 
         }
     }
-   /* public static void main2(String[] args) {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        while (T-->0)
+        {
+            int N = sc.nextInt();
+            Stack<Integer> pq = new Stack<>();
+            int sum = 0 ;
+            for(int i = 0 ; i < N ;i++)
+            {
+                int current = sc.nextInt();
+                sum+=current;
+
+                while (!pq.isEmpty() && pq.peek()>current)
+                {
+                    pq.pop();
+                    sum-=current;
+                }
+                pq.add(current);
+            }
+            System.out.println(sum);
+
+        }
+    }
+   /* public static void bf(String[] args) {
         //it was fast reader..
         Scanner sc = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(System.out);
