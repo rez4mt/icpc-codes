@@ -1,37 +1,46 @@
 package com.Judges.UVA;
 
+import java.beans.Visibility;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.*;
 
 public class U12442 {
+    static boolean[] visited ;
+    static int[] edges ;
+    static int[] distto ;
     public static void main(String[] args) throws Exception{
-        Scanner sc = new Scanner(System.in);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
         int C =  1;
+        visited = new boolean[50001];
+        edges = new int[50001];
+        distto = new int[50001];
+
         PrintWriter pw  = new PrintWriter(System.out);
         while (T-->0)
         {
             int N = Integer.parseInt(br.readLine());
-            Graph g = new Graph(N);
-            for(int i = 0 ; i < N ; i++)
+            for(int i = 0 ; i < N  ;i++)
             {
+                int v , w ;
                 StringTokenizer st = new StringTokenizer(br.readLine());
-                g.addEdge(Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken()));
+                v = Integer.valueOf(st.nextToken());
+                w = Integer.valueOf(st.nextToken());
+                visited[v] = false;
+                edges[v] = w;
+                distto[v] = -1;
             }
-            int max = 0 ;
-            int x = -1;
-            for(int i = 1 ; i <= N ; i++)
+            int x = 0;
+            int len = 0;
+            for(int i  = 1 ; i <= N ;i++)
             {
-                if(g.distTo[i] == Integer.MAX_VALUE)
+                if(distto[i] == -1)
+                    dfs(i);
+                if(distto[i]>len)
                 {
-                    g.dfs(i);
-                }
-                if( g.distTo[i] > max)
-                {
-                    max = g.distTo[i];
+                    len = distto[i];
                     x = i;
                 }
             }
@@ -39,39 +48,17 @@ public class U12442 {
         }
         pw.flush();
     }
-    static class Graph{
-        boolean[] visited ;
-        int[] distTo ;
-        ArrayList<Integer>[] adj ;
-        public Graph(int N)
+    private static int dfs(int s)
+    {
+        int sum = 0 ;
+        visited[s] = true;
+        if(edges[s]!=-1 && !visited[edges[s]])
         {
-            visited = new boolean[N+1];
-            adj = (ArrayList<Integer>[]) new ArrayList[N+1];
-            for(int i = 1 ; i < N+1 ; i++)
-                adj[i] = new ArrayList<>();
-            distTo = new int[N+1];
-            Arrays.fill(distTo , Integer.MAX_VALUE);
+            sum += 1+dfs(edges[s]);
         }
-        public void addEdge(int v , int u)
-        {
-            adj[v].add(u);
-        }
-        public int dfs(int point)
-        {
-            int sum = 0 ;
-            visited[point] = true;
-            for (int w :
-                    adj[point]) {
-                if(!visited[w])
-                {
-                    sum+=1+dfs(w);
-                    visited[w] = false;
-                }
-            }
-            distTo[point] = sum;
-            visited[point] = false;
-            return sum;
-
-        }
+        distto[s] = sum;
+        visited[s] = false;
+        return sum;
     }
+
 }

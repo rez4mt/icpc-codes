@@ -94,6 +94,7 @@ public class education {
             return true;
         }
     } //end FastReader
+
 }
 
 
