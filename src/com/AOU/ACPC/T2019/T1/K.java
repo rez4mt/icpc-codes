@@ -1,4 +1,4 @@
-package com.AOU.ACPC.T2019;
+package com.AOU.ACPC.T2019.T1;
 import java.util.ArrayList;
 import java.util.Scanner;
 
