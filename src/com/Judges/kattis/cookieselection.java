@@ -8,102 +8,53 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class cookieselection {
-    /*public static void main(String[] args) {
-        FR sc = new FR();
-        //ArrayList<Integer> list = new ArrayList<>(600);
-        int[] frq = new int[32];
-        PrintWriter pw = new PrintWriter(System.out);
-        try{
-            int size = 0 ;
-            while (true)
-            {
-                String s = null;
-                s = sc.next();
-                if(s.charAt(0)=='#')
-                {
-                    long idx =(int) Math.ceil((size+1)/2d);
-                    long current=  0 ;
-                    for(int i = 0 ; i <= 31 ; i++)
-                    {
-                        current+=frq[i];
-                        if(current>=idx)
-                        {
-                            size--;
-                            pw.println(i);
-                            frq[i]--;
-                            break;
-                        }
-                    }
-                    //print out and remove
-                    *//*if(list.size() %2 == 0)
-                    {
-                        //(c/2)+1
-                        int idx = ((list.size())/2)  +1 ;
-                        int item = list.get(idx-1);
-                        list.remove(idx-1);
-                        pw.println(item);
-                    }else
-                    {
-                        int idx = ((list.size()+1) / 2) ;
-                        int item = list.get(idx-1);
-                        list.remove(idx-1);
-                        pw.println(item);
-                    }*//*
-                }else
-                {
-                    int is = Integer.valueOf(s);
-                    frq[is]++;
-                    size++;
-                    *//*int is = Integer.parseInt(s);
-                    int idx = Collections.binarySearch(list,is);
-                    if(idx<0)
-                        idx = -idx-1;
-                    list.add(idx , is);*//*
-                }
 
-            }
-        }catch (Exception e){
+    static PriorityQueue<Integer> bottomPq;
+    static PriorityQueue<Integer> topPq;
 
-        }
-        pw.flush();
-    }*/
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        topPq = new PriorityQueue<>();
+        bottomPq = new PriorityQueue<>(Collections.reverseOrder());
         while (sc.hasNext())
         {
             String s = sc.next();
             if(s.equals("#"))
             {
                 //print something
+                //check if answers are equal
+                System.out.println(get());
             }else
             {
                 //add to pq
+                add(s);
             }
         }
     }
-    static class FR{
-        BufferedReader br ;
-        StringTokenizer st;
-        public FR()
+    private static int get()
+    {
+        if(topPq.size() == bottomPq.size())
         {
-            br = new BufferedReader(new InputStreamReader(System.in));
+
+           return (topPq.size()!=0?topPq.poll():bottomPq.poll());
         }
-        public String next() throws IOException
-        {
-            if(st == null || !st.hasMoreTokens())
-            {
-                st = new StringTokenizer(br.readLine());
-                return next();
-            }
-            return st.nextToken();
-        }
-        public int nextInt() throws IOException
-        {
-            return Integer.valueOf(next());
-        }
-        public long nextLong() throws IOException
-        {
-            return Long.parseLong(next());
+        else {
+            return (bottomPq.size()!=0?bottomPq.poll():topPq.poll());
         }
     }
+    private static void add(String n2)
+    {
+        int n = Integer.parseInt(n2);
+        topPq.add(n);
+        while (topPq.size() > bottomPq.size())
+            bottomPq.add(topPq.poll());
+        if(topPq.size()!=0 && topPq.peek()<bottomPq.peek())
+        {
+            int top = topPq.poll();
+            int bottom = bottomPq.poll();
+            bottomPq.add(top);
+            topPq.add(bottom);
+        }
+    }
+
 }

@@ -1,13 +1,12 @@
 package com.Judges.UVA;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.PrintWriter;
+import java.util.*;
 
 public class U11504 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int T =  sc.nextInt();
+        PrintWriter pw = new PrintWriter(System.out);
         while (T-->0)
         {
             int N = sc.nextInt();
@@ -19,33 +18,48 @@ public class U11504 {
                 int q = sc.nextInt();
                 g.addEdge(p-1,q-1);
             }
-            int count = 0 ;
+            int c =  0;
             for(int i = 0 ; i < N ; i++)
             {
                 if(!g.visited[i])
-                {
-                    count++;
                     g.dfs(i);
+            }
+            Collections.reverse(g.list);
+            Arrays.fill(g.visited, false);
+            for(int i = 0 ; i < g.list.size(); i++)
+            {
+                int item = g.list.get(i);
+                if(!g.visited[item])
+                {
+                    c++;
+                    g.dfs(item);
                 }
             }
-            System.out.println(count);
+            //do topological sort.
+            //reverse post order
+            pw.println(c);
         }
+        pw.flush();
     }
     static class Graph{
+        ArrayList<Integer> list ;
         ArrayList<Integer>[] adj;
         boolean[] visited ;
+        int[] indeg ;
         public Graph(int N)
         {
+            list = new ArrayList<Integer>();
             adj = new ArrayList[N];
             for(int i = 0 ; i < N ; i++)
                 adj[i] = new ArrayList<>();
             visited = new boolean[N];
+            indeg = new int[N];
 
         }
         public void addEdge(int u , int w)
         {
             adj[u].add(w);
-            adj[w].add(u);
+            indeg[w] ++ ;
         }
         public void dfs(int s)
         {
@@ -57,6 +71,7 @@ public class U11504 {
                     dfs(e);
                 }
             }
+            list.add(s);
         }
     }
 }
