@@ -1,9 +1,67 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Random;
 import java.util.Scanner;
 
-class Test {
-    public static void main(String[] args) {
-        
-    }
+public class Test {
+   /* public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        while (T-->0)
+        {
+             int[] list = new int[3];
+
+             int sum = 0 ;
+             for(int i = 0 ;i <  3 ; i++)
+             {
+                 list[i] = sc.nextInt();
+                 sum += list[i];
+             }
+             Arrays.sort(list);
+             //list[1] is median
+
+             sum /= 3;
+             for(int i = 0 ; i <3 ; i++)
+             {
+                 if(list[i] < sum)
+                     list[i]++;
+                 else if(list[i] > sum)
+                     list[i] -- ;
+             }
+             long ans = Math.abs(list[0] - list[1]) + Math.abs(list[1] - list[2]) + Math.abs(list[2]- list[0]) ;
+            System.out.println(ans);
+        }
+    }*/
+   public static void main(String[] args) {
+       int n = 3;
+       System.out.println(n);
+       while (n-->0)
+       {
+           System.out.println();
+           Random r = new Random();
+           int max_char = r.nextInt(5);
+           System.out.println((char)('A'+max_char));
+           int edges = r.nextInt(10);
+           HashSet<String> set = new HashSet<>();
+           while (edges-->0)
+           {
+               int a = r.nextInt(max_char+1);
+               int b = r.nextInt(max_char+1);
+               String sA = ((char)('A'+a)) +""+((char)('A'+b));
+               String sB = ((char)('A'+b))+""+((char)('A'+a));
+               if(!set.contains(sA) && !set.contains(sB))
+               {
+                   set.add(sA);
+                   set.add(sB);
+                   //sout
+                   System.out.println(sA);
+               }
+           }
+       }
+
+
+
+   }
 }
 
 

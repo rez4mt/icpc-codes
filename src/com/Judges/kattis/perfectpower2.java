@@ -1,39 +1,43 @@
 package com.Judges.kattis;
 
+
 import java.util.*;
 
 public class perfectpower2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        long n = 2;
         while (true) {
-            int n = sc.nextInt();
-            boolean neg = false;
-            if (n<1)
-            {
-                neg = true;
-                n *= -1;
-            }
-            if (n==0)
+            n = sc.nextInt();
+            if(n == 0)
                 break;
-            boolean b = true;
-            boolean even = false;
-            double x;
-            int sqrt =(int) Math.sqrt(n);
-            for (int i = 2; i <= sqrt; i++) {
-                 x = Math.log(n)/Math.log(i);
-                if (x==(int)x) {
-                    b = false;
-                    if (neg && (int)x%2==0)
-                        even = true;
-                    if (!even|| !neg)
-                        System.out.println((int)x);
-                    break;
+            System.out.println(greedy(n));
+        }
+
+    }
+    private static int greedy(long n)
+    {
+        boolean neg = false;
+        if (n<1)
+        {
+            neg = true;
+            n *= -1;
+        }
+        for(int i = 31 ; i >= 1 ; i--)
+        {
+            double x = Math.pow(n , 1d / i);
+            if(Math.abs(x - Math.round(x)) < 10e-9 )
+            {
+                if(!neg || i%2 == 1)
+                {
+                    if(Math.abs(Math.pow(Math.round(x) , i )-n) < 10e-9)
+                    {
+                        return i;
+                    }
                 }
             }
-            if (neg && even)
-                b = true;
-            if (b)
-                System.out.println(1);
         }
+        return 1;
+
     }
 }
