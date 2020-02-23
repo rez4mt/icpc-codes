@@ -4,6 +4,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Test {
+
+    public static void main(String[] args) {
+        int count = (int) Math.ceil(1d/0);
+        System.out.println(count);
+    }
+
+
    /* public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int T = sc.nextInt();
@@ -32,7 +39,7 @@ public class Test {
             System.out.println(ans);
         }
     }*/
-   public static void main(String[] args) {
+   /*public static void main(String[] args) {
        int n = 3;
        System.out.println(n);
        while (n-->0)
@@ -57,11 +64,11 @@ public class Test {
                    System.out.println(sA);
                }
            }
-       }
+       }*/
 
 
 
-   }
+
 }
 
 

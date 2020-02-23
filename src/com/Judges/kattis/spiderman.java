@@ -109,7 +109,7 @@ public class spiderman {
             sb.deleteCharAt(sb.length()-1);
         }else
         {
-            sb.append("D");
+            sb.append("E");
             bt(idx+1 , sum-list[idx] , height);
             sb.deleteCharAt(sb.length()-1);
             sb.append("U");
