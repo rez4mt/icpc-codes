@@ -1,4 +1,4 @@
-package com.Judges.CodeForce.Contents.R529D3;
+package com.Judges.CodeForce.CF1095;
 
 import java.util.*;
 

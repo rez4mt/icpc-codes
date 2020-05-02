@@ -7,13 +7,27 @@ public class C {
         Scanner sc = new Scanner(System.in);
         int[] list = new int[26];
         String s = sc.next();
-        for(int i = 0 ; i < s.length();i++)
-            list[s.charAt(i)-'a']++;
-        long sum = 1;
-        for(int i = 0 ; i < list.length ; i++)
+        int[] frq = new int[26];
+        long[][] occ = new long[26][26];
+        long ans = 0 ;
+        for(int i  = 0 ; i < s.length() ; i++)
         {
-            sum*=list[i]==0?1:list[i];
+            int chr = s.charAt(i)-'a';
+            for(int j = 0 ; j < 26 ; j++)
+            {
+                occ[j][chr] += frq[j];
+            }
+            frq[chr] ++;
         }
-        System.out.println(sum);
+        for(int i = 0 ; i  <  26 ; i++)
+        {
+            ans = Math.max(ans , frq[i]);
+            for(int j = 0 ; j <  26 ; j++)
+            {
+                ans = Math.max(occ[i][j],ans);
+            }
+        }
+        System.out.println(ans);
+
     }
 }

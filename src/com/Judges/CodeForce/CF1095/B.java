@@ -1,25 +1,25 @@
-//package com.Judges.CodeForce.Contents.R529D3;
+package com.Judges.CodeForce.CF1095;//package com.Judges.CodeForce.Contents.R529D3;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class B {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[] nums = new int[n];
+        ArrayList<Integer> nums = new ArrayList<>();
         for(int i = 0 ; i < n ; i ++)
         {
-            nums[i] = sc.nextInt();
+             nums.add(sc.nextInt());
         }
-        Arrays.sort(nums);
+
+        Collections.sort(nums);
         if(n == 2)
         {
             System.out.println(0);
             return;
         }
-        int first = nums[n-2] - nums[0];
-        int second = nums[n-1] - nums[1];
+        int first = nums.get(n-2) - nums.get(0);
+        int second = nums.get(n-1) - nums.get(1);
         System.out.println(Math.min(first,second));
     }
 }
