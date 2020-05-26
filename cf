@@ -1,0 +1,61 @@
+#!/bin/bash
+
+op=$1
+if  [ "$op" != "new" ] && [ "$op" != "open" ]; then
+  while true; do
+    read -p "Enter the command (new / open) " op
+    case $op in
+      new) break;;
+      open) break;;
+    esac
+  done
+fi
+
+
+cf_code=$2
+if [ -z $2 ]
+then
+  read -p "Enter CF code." cf_code
+fi
+createCFFile () {
+   sed -e 's|_CNAME|package com.Judges.CodeForce.CF'$cf_code'|g' "./Data/Template" > "$dir/$1.java"
+   sed -i 's/_C2NAME/'$1'/g' "$dir/$1.java"
+}
+cfopen () {
+  if [ -f "$1/$2.java" ]; then
+    idea "$1/$2.java"
+  fi
+}
+case "$op" in
+        new)
+          dir="src/com/Judges/CodeForce/CF$cf_code"
+          if [ -d "$dir" ]; then
+            createCFFile "D"
+            createCFFile "E"
+            createCFFile "F"
+            createCFFile "G"
+            cfopen "$dir" "D"
+            cfopen "$dir" "E"
+            cfopen "$dir" "F"
+            cfopen "$dir" "G"
+          else
+            mkdir "$dir"
+            createCFFile "A"
+            createCFFile "B"
+            createCFFile "C"
+            cfopen "$dir" "A"
+            cfopen "$dir" "B"
+            cfopen "$dir" "C"
+          fi
+            ;;
+        open)
+            dir="src/com/Judges/CodeForce/CF$cf_code"
+            cfopen "$dir" "A"
+            cfopen "$dir" "B"
+            cfopen "$dir" "C"
+            cfopen "$dir" "D"
+            cfopen "$dir" "E"
+            cfopen "$dir" "F"
+            cfopen "$dir" "G"
+            ;;
+esac
