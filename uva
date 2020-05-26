@@ -1,0 +1,45 @@
+#!/bin/bash
+op=$1
+if  [ "$op" != "new" ] && [ "$op" != "open" ] && [ "$op" != "create" ]; then
+  while true; do
+    read -p "Enter the command (new / open) " op
+    case $op in
+      new) break;;
+      open) break;;
+    esac
+  done
+fi
+
+if [ "$op" != "create" ]; then
+  op=new
+fi
+
+uv_code=$2
+if [ -z $2 ]
+then
+  read -p "Enter CF code : " uv_code
+fi
+uvacreate () {
+   sed -e 's|_C2NAME|U'$uv_code'|g' "./Data/UVTemplate" > "$file"
+}
+uvaopen () {
+  if [ -f "$file" ]; then
+    idea "$file"
+  fi
+}
+case "$op" in
+        new)
+          file="src/com/Judges/UVA/U$uv_code.java"
+          if [ -f "$file" ]; then
+            #already exists ! open it
+            uvaopen
+          else
+            uvacreate
+            uvaopen
+          fi
+            ;;
+        open)
+            file="src/com/Judges/UVA/U$uv_code.java"
+            uvaopen
+            ;;
+esac
