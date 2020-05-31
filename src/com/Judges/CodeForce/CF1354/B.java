@@ -1,6 +1,8 @@
-_CNAME;
+package com.Judges.CodeForce. CF1354;
 import java.util.*;
-public class _C2NAME {
+import java.io.*;
+
+public class B {
     static PrintWriter pw ;
     static class FastReader {
         BufferedReader br;
@@ -25,13 +27,41 @@ public class _C2NAME {
             return true;
         }
     } //end FastReader
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         FastReader sc = new FastReader();
         int T = sc.nextInt();
         pw = new PrintWriter(System.out);
         while (T-->0)
         {
+            String s = sc.next();
+            int n = s.length();
+            int[] frq = new int[4];
+            int k = 0 ;
+            int len = n;
+            boolean found = false;
+            for(int i = 0 ,j = 0 ; i < n ; i++)
+            {
+                if(frq[s.charAt(i)-'0']++ == 0)
+                    k++;
+                if(k == 3)
+                {
+                    found = true;
+                    while ( k == 3 &&j<i && frq[s.charAt(j)-'0']>1)
+                    {
+                        if(frq[s.charAt(j)-'0']--==1)
+                            k--;
+                        j++;
+                    }
+                    if(frq[s.charAt(j)-'0']==0)
+                        k--;
+                    len = Math.min(len , i-j+1);
+                }
 
+            }
+            if(found)
+                System.out.println(len);
+            else
+                System.out.println(0);
         }
         pw.flush();
     }

@@ -1,6 +1,8 @@
-_CNAME;
+package com.Judges.CodeForce. CF1354;
 import java.util.*;
-public class _C2NAME {
+import java.io.*;
+
+public class C {
     static PrintWriter pw ;
     static class FastReader {
         BufferedReader br;
@@ -25,15 +27,24 @@ public class _C2NAME {
             return true;
         }
     } //end FastReader
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         FastReader sc = new FastReader();
         int T = sc.nextInt();
         pw = new PrintWriter(System.out);
         while (T-->0)
         {
+            int n = sc.nextInt();
+            double rad = 1d / Math.cos(Math.toRadians(180d/(2*n)));
+            System.out.println(1+rad);
+           /* int triC = (n-2)/2;
+            System.out.println(triC);*/
 
         }
         pw.flush();
+    }
+    static double round(double d)
+    {
+        return (double)Math.round(d * 100000d) / 100000d;
     }
      private static void print(Object o)
      {
