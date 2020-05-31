@@ -1,6 +1,8 @@
-_CNAME;
+package com.Judges.CodeForce. CF1354;
 import java.util.*;
-public class _C2NAME {
+import java.io.*;
+
+public class A {
     static PrintWriter pw ;
     static class FastReader {
         BufferedReader br;
@@ -25,12 +27,33 @@ public class _C2NAME {
             return true;
         }
     } //end FastReader
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         FastReader sc = new FastReader();
         int T = sc.nextInt();
         pw = new PrintWriter(System.out);
         while (T-->0)
         {
+            int a, b , c , d;
+            a = sc.nextInt();
+            b = sc.nextInt();
+            c = sc.nextInt();
+            d = sc.nextInt();
+
+            if(a <= b)
+            {
+                pw.println(b);
+                continue;
+            }
+
+            int needed =  a - b ;
+            int can = c - d;
+            if(can <=0)
+            {
+                println("-1");
+                continue;
+            }
+            int ceil = (int)Math.ceil(1d*needed / can);
+            println(1l* ceil*c + b);
 
         }
         pw.flush();
