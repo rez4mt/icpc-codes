@@ -1,8 +1,8 @@
-_CNAME;
+package com.Judges.CodeForce.CF123123123;
 import java.util.*;
 import java.io.*;
 
-public class _C2NAME {
+public class B {
     static PrintWriter pw ;
     public static void main(String[] args) throws Exception {
         fr sc = new fr();

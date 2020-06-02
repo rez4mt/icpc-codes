@@ -1,8 +1,8 @@
-_CNAME;
+package com.Judges.CodeForce.CF1359;
 import java.util.*;
 import java.io.*;
 
-public class _C2NAME {
+public class B {
     static PrintWriter pw ;
     public static void main(String[] args) throws Exception {
         fr sc = new fr();
@@ -11,7 +11,33 @@ public class _C2NAME {
         int T = sc.nextInt();
         while (T-->0)
         {
-
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            long total_cost = 0 ;
+            char[][] list = new char[n][];
+            for(int i = 0 ; i < n ; i++)
+                list[i] = sc.next().toCharArray();
+            y = Math.min(y , 2*x);
+            for(int i = 0 ; i < n ;i++)
+            {
+                for(int j = 0 ; j < m ; j++)
+                {
+                    if(list[i][j]=='.')
+                    {
+                        if( j != m-1 && list[i][j+1]=='.')
+                        {
+                            total_cost+=y;
+                            j++;
+                        }else
+                        {
+                            total_cost+=x;
+                        }
+                    }
+                }
+            }
+            System.out.println(total_cost);
         }
     }
 
