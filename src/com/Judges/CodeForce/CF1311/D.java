@@ -77,6 +77,9 @@ public class D {
         {
             return Integer.valueOf(next());
         }
+        public long nextLong() throws Exception{
+            return Long.parseLong(next());
+        }
     }
 
 }

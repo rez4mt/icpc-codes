@@ -6,9 +6,17 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        double r = sc.nextDouble();
-        double area = r*r*3.14159;
-        System.out.printf("A=%.4f\n",area);
+        int T = sc.nextInt();
+        while (T-->0)
+        {
+            int n = sc.nextInt();
+
+            int[] list = new int[n];
+            int largest=  0;
+            int _idx = 0 ;
+            
+
+        }
     }
 
 }
