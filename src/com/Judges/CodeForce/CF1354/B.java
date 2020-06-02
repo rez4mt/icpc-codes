@@ -1,15 +1,9 @@
-_CNAME;
+package com.Judges.CodeForce. CF1354;
 import java.util.*;
 import java.io.*;
 
-public class _C2NAME {
+public class B {
     static PrintWriter pw ;
-<<<<<<< HEAD
-    public static void main(String[] args) throws Exception {
-        fr sc = new fr();
-        pw = new PrintWriter(System.out);
-
-=======
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -33,49 +27,44 @@ public class _C2NAME {
             return true;
         }
     } //end FastReader
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         FastReader sc = new FastReader();
->>>>>>> 023dae3c8f3fde338860248438a07bc56a9a078f
         int T = sc.nextInt();
         pw = new PrintWriter(System.out);
         while (T-->0)
         {
+            String s = sc.next();
+            int n = s.length();
+            int[] frq = new int[4];
+            int k = 0 ;
+            int len = n;
+            boolean found = false;
+            for(int i = 0 ,j = 0 ; i < n ; i++)
+            {
+                if(frq[s.charAt(i)-'0']++ == 0)
+                    k++;
+                if(k == 3)
+                {
+                    found = true;
+                    while ( k == 3 &&j<i && frq[s.charAt(j)-'0']>1)
+                    {
+                        if(frq[s.charAt(j)-'0']--==1)
+                            k--;
+                        j++;
+                    }
+                    if(frq[s.charAt(j)-'0']==0)
+                        k--;
+                    len = Math.min(len , i-j+1);
+                }
 
+            }
+            if(found)
+                System.out.println(len);
+            else
+                System.out.println(0);
         }
         pw.flush();
     }
-<<<<<<< HEAD
-
-    static class fr{
-        BufferedReader br;
-        StringTokenizer st;
-        public fr(File f) throws Exception
-        {
-            br = new BufferedReader(new FileReader(f));
-        }
-        public fr()
-        {
-            br = new BufferedReader(new InputStreamReader(System.in));
-        }
-        public String next() throws Exception
-        {
-            if(st == null || !st.hasMoreTokens())
-            {
-                st = new StringTokenizer(br.readLine());
-                return next();
-            }
-            return st.nextToken();
-        }
-        public int nextInt() throws Exception
-        {
-            return Integer.valueOf(next());
-        }
-        public long nextLong() throws Exception{
-            return Long.parseLong(next());
-        }
-     }
-
-=======
      private static void print(Object o)
      {
          pw.print(o);
@@ -84,5 +73,4 @@ public class _C2NAME {
      {
          pw.println(o);
      }
->>>>>>> 023dae3c8f3fde338860248438a07bc56a9a078f
 }

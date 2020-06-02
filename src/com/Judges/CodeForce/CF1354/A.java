@@ -1,15 +1,9 @@
-_CNAME;
+package com.Judges.CodeForce. CF1354;
 import java.util.*;
 import java.io.*;
 
-public class _C2NAME {
+public class A {
     static PrintWriter pw ;
-<<<<<<< HEAD
-    public static void main(String[] args) throws Exception {
-        fr sc = new fr();
-        pw = new PrintWriter(System.out);
-
-=======
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -33,49 +27,37 @@ public class _C2NAME {
             return true;
         }
     } //end FastReader
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         FastReader sc = new FastReader();
->>>>>>> 023dae3c8f3fde338860248438a07bc56a9a078f
         int T = sc.nextInt();
         pw = new PrintWriter(System.out);
         while (T-->0)
         {
+            int a, b , c , d;
+            a = sc.nextInt();
+            b = sc.nextInt();
+            c = sc.nextInt();
+            d = sc.nextInt();
+
+            if(a <= b)
+            {
+                pw.println(b);
+                continue;
+            }
+
+            int needed =  a - b ;
+            int can = c - d;
+            if(can <=0)
+            {
+                println("-1");
+                continue;
+            }
+            int ceil = (int)Math.ceil(1d*needed / can);
+            println(1l* ceil*c + b);
 
         }
         pw.flush();
     }
-<<<<<<< HEAD
-
-    static class fr{
-        BufferedReader br;
-        StringTokenizer st;
-        public fr(File f) throws Exception
-        {
-            br = new BufferedReader(new FileReader(f));
-        }
-        public fr()
-        {
-            br = new BufferedReader(new InputStreamReader(System.in));
-        }
-        public String next() throws Exception
-        {
-            if(st == null || !st.hasMoreTokens())
-            {
-                st = new StringTokenizer(br.readLine());
-                return next();
-            }
-            return st.nextToken();
-        }
-        public int nextInt() throws Exception
-        {
-            return Integer.valueOf(next());
-        }
-        public long nextLong() throws Exception{
-            return Long.parseLong(next());
-        }
-     }
-
-=======
      private static void print(Object o)
      {
          pw.print(o);
@@ -84,5 +66,4 @@ public class _C2NAME {
      {
          pw.println(o);
      }
->>>>>>> 023dae3c8f3fde338860248438a07bc56a9a078f
 }
