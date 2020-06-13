@@ -3,21 +3,22 @@ import java.util.*;
 import java.io.*;
 
 public class _C2NAME {
-    static PrintWriter pw ;
-<<<<<<< HEAD
-    public static void main(String[] args) throws Exception {
-        fr sc = new fr();
-        pw = new PrintWriter(System.out);
+    static boolean TC = true;
+    public static void solve()
+    {
+        //codes here..
+    }
 
-=======
+
+
+    static FastReader sc;
+    static PrintWriter pw ;
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
-        FastReader() { // To read from the standard input
+        FastReader() {
             br = new BufferedReader(new InputStreamReader(System.in));
         }
-        // You can add a constructor to read from a file
-        /////
         String next() throws IOException {
             while (st == null || !st.hasMoreTokens())
                 st = new StringTokenizer(br.readLine());
@@ -25,64 +26,30 @@ public class _C2NAME {
         }
         String nextLine() throws IOException { return br.readLine(); }
         int nextInt() throws IOException { return Integer.parseInt(next()); }
-        //You can add nextDouble() etc...
-        boolean hasNext() throws IOException { // if input is terminated by EOF
+        long nextLong() throws IOException { return Long.parseLong(next()); }
+        boolean hasNext() throws IOException {
             String s = br.readLine();
             if (s == null) return false;
             st = new StringTokenizer(s);
             return true;
         }
     } //end FastReader
-    public static void main(String[] args) {
-        FastReader sc = new FastReader();
->>>>>>> 023dae3c8f3fde338860248438a07bc56a9a078f
-        int T = sc.nextInt();
+    public static void main(String[] args) throws Exception{
+        sc = new FastReader();
+        int T = TC?sc.nextInt():1;
         pw = new PrintWriter(System.out);
         while (T-->0)
         {
-
+            solve();
         }
         pw.flush();
     }
-<<<<<<< HEAD
-
-    static class fr{
-        BufferedReader br;
-        StringTokenizer st;
-        public fr(File f) throws Exception
-        {
-            br = new BufferedReader(new FileReader(f));
-        }
-        public fr()
-        {
-            br = new BufferedReader(new InputStreamReader(System.in));
-        }
-        public String next() throws Exception
-        {
-            if(st == null || !st.hasMoreTokens())
-            {
-                st = new StringTokenizer(br.readLine());
-                return next();
-            }
-            return st.nextToken();
-        }
-        public int nextInt() throws Exception
-        {
-            return Integer.valueOf(next());
-        }
-        public long nextLong() throws Exception{
-            return Long.parseLong(next());
-        }
-     }
-
-=======
-     private static void print(Object o)
-     {
-         pw.print(o);
-     }
-     private static void println(Object o)
-     {
-         pw.println(o);
-     }
->>>>>>> 023dae3c8f3fde338860248438a07bc56a9a078f
+    private static void print(Object o)
+    {
+        pw.print(o);
+    }
+    private static void println(Object o)
+    {
+        pw.println(o);
+    }
 }
