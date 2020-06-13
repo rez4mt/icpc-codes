@@ -3,7 +3,7 @@
 op=$1
 if  [ "$op" != "new" ] && [ "$op" != "open" ] && [ "$op" != "rm" ]; then
   while true; do
-    read -p "Enter the command (new / open) " op
+    read -p "Enter the command (new / open / rm) " op
     case $op in
       new) break;;
       open) break;;
