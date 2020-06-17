@@ -1,8 +1,8 @@
-_CNAME;
+package com.Judges.CodeForce. CF1365;
 import java.util.*;
 import java.io.*;
 
-public class _C2NAME {
+public class C {
     static PrintWriter pw ;
     static class FastReader {
         BufferedReader br;
@@ -27,16 +27,36 @@ public class _C2NAME {
             return true;
         }
     } //end FastReader
+
     public static void main(String[] args) throws Exception{
         FastReader sc = new FastReader();
-        int T = sc.nextInt();
+        int T = 1;
         pw = new PrintWriter(System.out);
         while (T-->0)
         {
-
+            int n = sc.nextInt();
+            HashMap<Integer , Integer> initial = new HashMap<>();
+            for(int i = 0 ; i <  n ;i++)
+                initial.put(sc.nextInt() , i );
+            int[] frq = new int[n];
+            for(int i = 0 ; i < n ; i++)
+            {
+                int a = sc.nextInt();
+                int old_pos = initial.get(a);
+                int move = ((old_pos - i) + n) % n  ;
+                frq[move]++;
+            }
+            int mx = 0 ;
+            for(int i = 0 ; i < n ;i++)
+            {
+                mx = Math.max(mx , frq[i]);
+            }
+            System.out.println(mx);
         }
         pw.flush();
     }
+
+
      private static void print(Object o)
      {
          pw.print(o);
