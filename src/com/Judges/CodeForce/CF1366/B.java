@@ -1,8 +1,8 @@
-_CNAME;
+package com.Judges.CodeForce. CF1366;
 import java.util.*;
 import java.io.*;
 
-public class _C2NAME {
+public class B {
     static PrintWriter pw ;
     static class FastReader {
         BufferedReader br;
@@ -33,7 +33,25 @@ public class _C2NAME {
         pw = new PrintWriter(System.out);
         while (T-->0)
         {
-
+            int n = sc.nextInt();
+            int x =  sc.nextInt();
+            int m = sc.nextInt();
+            int l = x;
+            int r = x;
+            while (m-->0)
+            {
+                int cl = sc.nextInt();
+                int cr = sc.nextInt();
+                if( l >= cl && l <= cr)
+                {
+                    l = Math.min(cl,l);
+                }
+                if( r <= cr && r >=cl)
+                {
+                    r = Math.max(cr,r);
+                }
+            }
+            System.out.println(Math.abs(r-l)+1);
         }
         pw.flush();
     }

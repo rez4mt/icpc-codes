@@ -1,8 +1,8 @@
-_CNAME;
+package com.Judges.CodeForce. CF1363;
 import java.util.*;
 import java.io.*;
 
-public class _C2NAME {
+public class C {
     static PrintWriter pw ;
     static class FastReader {
         BufferedReader br;
@@ -27,7 +27,7 @@ public class _C2NAME {
             return true;
         }
     } //end FastReader
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args)  throws Exception{
         FastReader sc = new FastReader();
         int T = sc.nextInt();
         pw = new PrintWriter(System.out);
