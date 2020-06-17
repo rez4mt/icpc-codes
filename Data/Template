@@ -3,15 +3,22 @@ import java.util.*;
 import java.io.*;
 
 public class _C2NAME {
+    static boolean TC = true;
+    public static void solve()
+    {
+        //codes here..
+    }
+
+
+
+    static FastReader sc;
     static PrintWriter pw ;
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
-        FastReader() { // To read from the standard input
+        FastReader() {
             br = new BufferedReader(new InputStreamReader(System.in));
         }
-        // You can add a constructor to read from a file
-        /////
         String next() throws IOException {
             while (st == null || !st.hasMoreTokens())
                 st = new StringTokenizer(br.readLine());
@@ -19,30 +26,30 @@ public class _C2NAME {
         }
         String nextLine() throws IOException { return br.readLine(); }
         int nextInt() throws IOException { return Integer.parseInt(next()); }
-        //You can add nextDouble() etc...
-        boolean hasNext() throws IOException { // if input is terminated by EOF
+        long nextLong() throws IOException { return Long.parseLong(next()); }
+        boolean hasNext() throws IOException {
             String s = br.readLine();
             if (s == null) return false;
             st = new StringTokenizer(s);
             return true;
         }
     } //end FastReader
+        int T = TC?sc.nextInt():1;
+        sc = new FastReader();
     public static void main(String[] args) throws Exception{
-        FastReader sc = new FastReader();
-        int T = sc.nextInt();
         pw = new PrintWriter(System.out);
         while (T-->0)
         {
-
+            solve();
         }
         pw.flush();
     }
-     private static void print(Object o)
-     {
-         pw.print(o);
-     }
-     private static void println(Object o)
-     {
-         pw.println(o);
-     }
+    private static void print(Object o)
+    {
+        pw.print(o);
+    }
+    private static void println(Object o)
+    {
+        pw.println(o);
+    }
 }

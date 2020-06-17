@@ -1,12 +1,13 @@
 #!/bin/bash
 
 op=$1
-if  [ "$op" != "new" ] && [ "$op" != "open" ]; then
+if  [ "$op" != "new" ] && [ "$op" != "open" ] && [ "$op" != "rm" ]; then
   while true; do
-    read -p "Enter the command (new / open) " op
+    read -p "Enter the command (new / open / rm) " op
     case $op in
       new) break;;
       open) break;;
+      rm) break;;
     esac
   done
 fi
@@ -20,6 +21,11 @@ fi
 createCFFile () {
    sed -e 's|_CNAME|package com.Judges.CodeForce.CF'$cf_code'|g' "./Data/Template" > "$dir/$1.java"
    sed -i 's/_C2NAME/'$1'/g' "$dir/$1.java"
+}
+cfrm() {
+    if [ -d "$dir" ]; then
+        rm -rf "$dir"
+    fi
 }
 cfopen () {
   if [ -f "$1/$2.java" ]; then
@@ -58,4 +64,5 @@ case "$op" in
             cfopen "$dir" "F"
             cfopen "$dir" "G"
             ;;
+
 esac
