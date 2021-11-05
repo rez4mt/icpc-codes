@@ -3,17 +3,15 @@ package com.Judges;
 
 import java.util.Scanner;
 
-public class Main{
+public class Main {
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
-        //std::endl
-        //"\n"
-        //std::cout << "no,.asdasd" << fav << "asdasdasd" << std::endl
-        //std::cout << "no,.asdasd" << fav << "asdasdasd"
-        System.out.print("asdasdfadfadsf\n");
-        System.out.print("asdfasdf" + 12+ "sadsfasdf\n");
-
-
+        long x = sc.nextLong();
+        if(x < 1200){
+            System.out.println("ABC");
+        }else{
+            System.out.println("ARC");
+        }
     }
 }
